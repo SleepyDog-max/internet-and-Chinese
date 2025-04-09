@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汉语与互联网语言小测试</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .quiz-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            color: #ff6f61;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            display: none;
+            color: #333;
+        }
+        .question.active {
+            display: block;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #e0f7fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .options label:hover {
+            background: #b2ebf2;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        #prevBtn {
+            background: #ffd54f;
+            color: #333;
+        }
+        #nextBtn {
+            background: #4caf50;
+            color: white;
+        }
+        #restartBtn {
+            background: #ff6f61;
+            color: white;
+        }
+        #summary {
+            display: none;
+        }
+        #summary h2 {
+            color: #4caf50;
+        }
+        #summary p {
+            background: #f1f8e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>汉语与互联网语言小测试</h1>
+
+        <!-- Question 1 -->
+        <div class="question" id="q1">
+            <p>1. 以下哪种语言形式更接近于口语的特点？</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="A"> A. 微博上的短评：“哈哈，这视频笑死我了！”</label>
+                <label><input type="radio" name="q1" value="B"> B. 新闻报道：“昨日，某市发生一起交通事故。”</label>
+                <label><input type="radio" name="q1" value="C"> C. 学术论文：“本文旨在探讨语言的数字化趋势。”</label>
+                <label><input type="radio" name="q1" value="D"> D. 电子邮件：“尊敬的李先生，请审阅附件中的文件。”</label>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question" id="q2">
+            <p>2. 互联网语言通常具有以下哪种特性？</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="A"> A. 完全等同于书面语，结构严谨</label>
+                <label><input type="radio" name="q2" value="B"> B. 混合口语和书面语的特点</label>
+                <label><input type="radio" name="q2" value="C"> C. 完全等同于口语，毫无正式性</label>
+                <label><input type="radio" name="q2" value="D"> D. 仅使用表情符号，无文字内容</label>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question" id="q3">
+            <p>3. 互联网语言因其数字媒介特性，可以通过超文本链接实现内容的非线性表达。（正确/错误）</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="正确"> 正确</label>
+                <label><input type="radio" name="q3" value="错误"> 错误</label>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question" id="q4">
+            <p>4. 在微信聊天中，常用“2333”表示______，这是一种典型的互联网语言现象。</p>
+            <div class="options">
+                <input type="text" id="q4-input" placeholder="请输入答案">
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question" id="q5">
+            <p>5. 以下哪句话最能体现互联网语言的动态性和即时性？</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="A"> A. “我正在看一部新剧，超好看！”（微信消息）</label>
+                <label><input type="radio" name="q5" value="B"> B. “本公司将于下月推出新产品。”（官网公告）</label>
+                <label><input type="radio" name="q5" value="C"> C. “请于周五前提交报告。”（邮件）</label>
+                <label><input type="radio" name="q5" value="D"> D. “中国传统文化源远流长。”（书籍摘录）</label>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question" id="q6">
+            <p>6. 以下哪些是互联网语言中常见的非语言表达方式？（多选）</p>
+            <div class="options">
+                <label><input type="checkbox" name="q6" value="A"> A. 表情包</label>
+                <label><input type="checkbox" name="q6" value="B"> B. GIF 动图</label>
+                <label><input type="checkbox" name="q6" value="C"> C. 长篇书面叙述</label>
+                <label><input type="checkbox" name="q6" value="D"> D. 语音消息</label>
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question" id="q7">
+            <p>7. 互联网语言完全取代了传统的口语和书面语。（正确/错误）</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="正确"> 正确</label>
+                <label><input type="radio" name="q7" value="错误"> 错误</label>
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question" id="q8">
+            <p>8. 请举一个中文互联网语言的例子，并说明它如何体现口语和书面语的混合特性。</p>
+            <div class="options">
+                <textarea id="q8-input" rows="4" cols="50" placeholder="请输入答案"></textarea>
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question" id="q9">
+            <p>9. 为什么说互联网语言的数字媒介使其区别于传统的口语和书面语？请结合一个具体例子说明。</p>
+            <div class="options">
+                <textarea id="q9-input" rows="4" cols="50" placeholder="请输入答案"></textarea>
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question" id="q10">
+            <p>10. 根据你对互联网语言的理解，分析抖音评论区中的语言特点，并举例说明其与传统口语和书面语的区别。</p>
+            <div class="options">
+                <textarea id="q10-input" rows="4" cols="50" placeholder="请输入答案"></textarea>
+            </div>
+        </div>
+
+        <!-- Summary Page -->
+        <div id="summary">
+            <h2>测试结果</h2>
+            <p id="score"></p>
+            <p id="answers"></p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="buttons">
+            <button id="prevBtn">上一题</button>
+            <button id="nextBtn">下一题</button>
+            <button id="restartBtn">重新开始</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = document.querySelectorAll('.question');
+        const summary = document.getElementById('summary');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const restartBtn = document.getElementById('restartBtn');
+        let currentQuestion = 0;
+        let answers = {};
+
+        function showQuestion(index) {
+            questions.forEach((q, i) => {
+                q.style.display = i === index ? 'block' : 'none';
+            });
+            summary.style.display = 'none';
+            prevBtn.style.display = index === 0 ? 'none' : 'inline-block';
+            nextBtn.style.display = 'inline-block';
+            nextBtn.textContent = index === questions.length - 1 ? '提交' : '下一题';
+            restartBtn.style.display = 'inline-block';
+        }
+
+        function collectAnswers() {
+            answers = {};
+            for (let i = 1; i <= 10; i++) {
+                if (i === 4) {
+                    answers[`q${i}`] = document.getElementById(`q${i}-input`).value.trim();
+                } else if (i === 8 || i === 9 || i === 10) {
+                    answers[`q${i}`] = document.getElementById(`q${i}-input`).value.trim();
+                } else if (i === 6) {
+                    const checked = Array.from(document.querySelectorAll(`input[name="q${i}"]:checked`)).map(input => input.value);
+                    answers[`q${i}`] = checked;
+                } else {
+                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                    answers[`q${i}`] = selected ? selected.value : '';
+                }
+            }
+        }
+
+        function calculateScore() {
+            const correctAnswers = {
+                q1: 'A',
+                q2: 'B',
+                q3: '正确',
+                q4: '笑声或表示好笑',
+                q5: 'A',
+                q6: ['A', 'B', 'D'],
+                q7: '错误',
+                q8: '示例答案：“在B站刷到个神仙UP主，视频剪辑绝了，必须三连！”',
+                q9: '示例答案：互联网语言的数字媒介使其区别于传统口语和书面语，因为它支持多模态表达（如文字、图片、链接的结合）和即时互动。例子：在小红书上，用户发布一篇种草笔记：“这款面膜超好用，敷完皮肤水润润！[图片][购买链接]”。',
+                q10: '示例答案：抖音评论区的语言具有简洁性和碎片化、多模态表达、亚文化术语、即时性和互动性等特点。例如，“这舞绝了！”比口语更简洁，比书面语更随意；“🔥🔥”增强情感；“yyds”体现亚文化；“救命，笑到肚子疼😂”反映即时互动。'
+            };
+            let score = 0;
+            let summaryText = '';
+
+            for (let i = 1; i <= 10; i++) {
+                const userAnswer = answers[`q${i}`];
+                const correctAnswer = correctAnswers[`q${i}`];
+                let isCorrect = false;
+
+                if (i === 4) {
+                    isCorrect = userAnswer === '笑声' || userAnswer === '表示好笑' || userAnswer.includes('笑');
+                } else if (i === 6) {
+                    isCorrect = userAnswer.length === correctAnswer.length && userAnswer.every(val => correctAnswer.includes(val));
+                } else if (i === 8 || i === 9 || i === 10) {
+                    isCorrect = userAnswer.length > 0; // Placeholder, requires manual grading
+                } else {
+                    isCorrect = userAnswer === correctAnswer;
+                }
+
+                if (isCorrect && i <= 7) score += 10; // 10 points per objective question (70 total)
+
+                summaryText += `<strong>第${i}题</strong><br>`;
+                summaryText += `你的答案: ${Array.isArray(userAnswer) ? userAnswer.join(', ') : userAnswer || '未回答'}<br>`;
+                summaryText += `正确答案: ${Array.isArray(correctAnswer) ? correctAnswer.join(', ') : correctAnswer}<br>`;
+                summaryText += `解释: ${getExplanation(i)}<br><br>`;
+            }
+
+            document.getElementById('score').textContent = `得分: ${score}/70 (客观题部分，剩余30分需人工评分)`;
+            document.getElementById('answers').innerHTML = summaryText;
+        }
+
+        function getExplanation(qNum) {
+            const explanations = {
+                1: '口语特点包括非正式和即时性，微博短评更符合。',
+                2: '互联网语言混合口语和书面语属性。',
+                3: '超文本链接使互联网语言非线性。',
+                4: '“2333”表示笑声，是互联网特有现象。',
+                5: '微信消息体现动态性和即时性。',
+                6: '表情包、GIF、语音是非语言表达方式。',
+                7: '互联网语言是补充，未取代传统语言。',
+                8: '这句话体现互联网语言的口语和书面语混合特性。口语化特点包括“刷到”“绝了”“神仙”等非正式、夸张的表达，以及语气词的省略（如“了”增强语气）；书面语特点体现在完整句式和逻辑表达（如“必须三连”有明确的动作指令）。此外，“UP主”“三连”是B站特有的互联网术语，反映了数字媒介的亚文化特性。',
+                9: '数字媒介允许用户在文字描述外添加图片（展示面膜效果）和超文本链接（跳转到购买页面），这种多模态和非线性表达是口语（仅语音）和书面语（固定文本）无法实现的。此外，评论区的即时互动（如“求问敏感肌能用吗？”）进一步体现了数字媒介的动态性。',
+                10: '抖音评论区的语言具有以下特点，与传统口语和书面语显著不同：<br>1. 简洁性和碎片化：评论通常短小精悍，例如“这舞绝了！”比口语（如“这个舞蹈跳得特别好”）更简洁，比书面语（如“该舞蹈展现了高超的技巧”）更随意。<br>2. 多模态表达：用户常结合表情包或符号增强情感，如“🔥🔥”表示赞叹，这是口语（无视觉符号）和书面语（无动态表情）缺乏的。<br>3. 亚文化术语：抖音评论常使用平台特有词汇，如“神仙颜值”“yyds”（永远的神），这些术语在传统语言中不存在，体现了互联网语言的社区性。<br>4. 即时性和互动性：评论反映实时反应，如“救命，笑到肚子疼😂”，并常引发用户间的快速互动（如回复“同感！”），这比口语的面对面交流更广泛，比书面语的单向表达更动态。<br>与传统语言的区别：相较于口语，抖音评论通过文字和表情包实现跨时空交流；相较于书面语，评论更非正式、碎片化，且融入多媒体元素。'
+            };
+            return explanations[qNum];
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            collectAnswers();
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                calculateScore();
+                questions.forEach(q => q.style.display = 'none');
+                summary.style.display = 'block';
+                nextBtn.style.display = 'none';
+                prevBtn.style.display = 'none';
+            }
+        });
+
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            answers = {};
+            // Reset all inputs
+            document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+                input.checked = false;
+            });
+            document.querySelectorAll('input[type="text"], textarea').forEach(input => {
+                input.value = '';
+            });
+            // Reset display states
+            summary.style.display = 'none';
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'inline-block';
+            nextBtn.textContent = '下一题';
+            restartBtn.style.display = 'inline-block';
+            showQuestion(0);
+        });
+
+        // Start the quiz
+        showQuestion(0);
+    </script>
+</body>
+</html>
